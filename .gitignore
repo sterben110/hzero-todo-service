@@ -1,0 +1,133 @@
+# ===================== HZERO通用忽略规则 =====================
+# 1. Java/Spring Boot基础忽略（HZERO核心依赖）
+# 编译输出目录
+target/
+classes/
+build/
+out/
+# Maven/Gradle缓存
+.mvn/
+gradle/
+gradlew
+gradlew.bat
+*.gradle
+.gradle/
+# 依赖包本地缓存（HZERO私服依赖）
+*.jar.lastUpdated
+*.pom.lastUpdated
+# IDE配置（IDEA/Eclipse，HZERO开发常用）
+.idea/
+*.iml
+*.ipr
+*.iws
+.classpath
+.project
+.settings/
+*.launch
+.factorypath
+# 系统临时文件
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+*~
+*.tmp
+*.bak
+
+# 2. HZERO微服务特有目录
+# 微服务本地配置覆盖（避免提交个性化配置）
+src/main/resources/bootstrap-local.yml
+src/main/resources/application-local.yml
+src/main/resources/application-dev-local.yml
+src/main/resources/application-test-local.yml
+# HZERO本地脚本/工具
+script/local/
+tools/
+# 微服务日志（HZERO日志目录规范）
+logs/
+log/
+*.log
+logs/*
+log/*
+# 本地调试文件
+debug/
+*.hprof  # JVM堆dump文件
+*.dump   # 调试快照
+
+# 3. HZERO前端工程忽略（vue/react版本通用）
+# 前端依赖
+node_modules/
+# 前端编译产物
+dist/
+build/
+# 前端环境变量（敏感配置）
+.env
+.env.*
+!.env.example
+# 前端缓存/日志
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+# 前端编辑器缓存
+.vscode/
+.eslintcache
+.DS_Store
+# 前端构建缓存
+.nuxt/
+.vuepress/dist
+.serverless/
+# 前端测试/覆盖率
+coverage/
+test-report/
+
+# 4. 中间件/容器相关（HZERO常用中间件）
+# Docker相关（避免提交本地镜像/容器配置）
+docker-compose.override.yml
+*.dockerignore
+# Nacos/Config配置本地覆盖
+nacos-config/
+config/
+# Redis/Mysql本地配置
+redis.conf
+my.cnf
+# RocketMQ/Kafka本地日志
+rocketmq/logs/
+kafka/logs/
+# Elasticsearch本地数据
+elasticsearch/data/
+
+# 5. 敏感信息/密钥（HZERO企业级项目重点）
+# 密钥/证书
+*.p12
+*.jks
+*.key
+*.pem
+secrets/
+# 数据库脚本（含测试数据/敏感数据）
+sql/
+*.sql
+!sql/*.sql.example
+# 配置文件（敏感配置）
+*.properties
+!application.properties
+!bootstrap.properties
+*.yml
+!application.yml
+!bootstrap.yml
+# 第三方集成密钥
+*.accessKey
+*.secretKey
+# 本地凭证
+credentials/
+token/
+
+# 6. 测试/CI相关
+# 测试报告
+surefire-reports/
+failsafe-reports/
+# CI缓存
+.ci/
+.gitlab-ci-local/
+# 本地测试配置
+test-config/
