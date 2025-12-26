@@ -7,13 +7,17 @@
     <parent>
         <groupId>org.hzero</groupId>
         <artifactId>hzero-parent</artifactId>
-        <version>1.10.0.RELEASE</version>
+        <version>1.12.2.RELEASE</version>
     </parent>
 
     <!-- 项目坐标 -->
-    <groupId>com.example</groupId>
+    <groupId>org.hzero</groupId>
     <artifactId>hzero-todo-service</artifactId>
-    <version>1.10.0.RELEASE</version>
+
+    <!-- 属性 -->
+    <properties>
+        <mysql.version>8.0.28</mysql.version>
+    </properties>
 
     <!-- 项目业务依赖管理 -->
     <dependencies>
@@ -33,6 +37,11 @@
         <dependency>
             <groupId>org.hzero.starter</groupId>
             <artifactId>hzero-starter-mybatis-mapper</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
         </dependency>
         <!-- undertow服务器替代tomcat -->
         <dependency>
