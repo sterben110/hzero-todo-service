@@ -1,7 +1,6 @@
-# Spring配置
+#-----Spring配置
 spring:
-  profiles:
-    include: ${SPRING_PROFILES_INCLUDE:dev}
+  # MySQL数据库配置
   datasource:
     url: ${SPRING_DATASOURCE_URL:${mysql.url}}
     username: ${SPRING_DATASOURCE_USERNAME:${mysql.username}}
@@ -13,6 +12,7 @@ spring:
       maximum-pool-size: ${SPRING_DATASOURCE_MAXIMUM_POOL_SIZE:200}
       # 等待连接池分配连接的最大时长（毫秒）
       connection-timeout: ${SPRING_DATASOURCE_CONNECTION_TIMEOUT:30000}
+  # Redis缓存配置
   redis:
     host: ${SPRING_REDIS_HOST:${redis.host}}
     port: ${SPRING_REDIS_PORT:${redis.port}}
@@ -40,13 +40,45 @@ spring:
         # 开启gzip压缩
         compressed: true
 
-# MyBatis Mapper 扫描
+#-----远程调用、服务熔断及负载均衡配置
+# 远程调用配置-Feign
+feign:
+  hystrix:
+    enabled: true # 启用Feign的Hystrix支持，实现熔断降级
+# 服务熔断配置-Hystrix
+hystrix:
+  # 线程池配置（控制熔断的并发线程资源）
+  threadpool:
+    default:
+      coreSize: 1000 # 核心线程数（最大并发执行数）
+      maximumSize: 1000 # 最大线程数（与核心线程数一致，避免线程伸缩开销）
+  # 全局命令配置（熔断的超时、隔离策略）
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            # 命令执行超时时间（超时后触发熔断降级，默认1000毫秒，此处配置为40秒）
+            timeoutInMilliseconds: ${HYSTRIX_COMMAND_TIMEOUT_IN_MILLISECONDS:40000}
+# 客户端负载均衡器-Ribbon
+ribbon:
+  ReadTimeout: ${RIBBON_READ_TIMEOUT:30000} # 客户端读取超时时间（需小于Hystrix超时时间）
+  ConnectTimeout: ${RIBBON_CONNECT_TIMEOUT:3000} # 客户端连接超时时间
+  OkToRetryOnAllOperations: true # 允许对所有操作（GET/POST等）进行重试（需确保接口幂等性）
+  MaxAutoRetries: 1 # 同一服务实例的最大重试次数
+  MaxAutoRetriesNextServer: 1 # 切换其他服务实例的最大重试次数
+
+#----- 分布式事务配置-Seata
+seata:
+  enabled: ${SEATA_ENABLED:false} # 分布式事务开关（默认关闭，可通过环境变量SEATA_ENABLED启用）
+
+##### MyBatis Mapper 扫描
 mybatis:
   mapperLocations: classpath*:/mapper/*.xml
   configuration:
     mapUnderscoreToCamelCase: true
 
-# 日志配置
+##### 日志配置
 logging:
   level:
     org.hzero: ${LOG_LEVEL:debug}
