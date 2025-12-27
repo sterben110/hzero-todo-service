@@ -7,17 +7,11 @@
     <parent>
         <groupId>org.hzero</groupId>
         <artifactId>hzero-parent</artifactId>
-        <version>1.12.2.RELEASE</version>
+        <version>1.10.0.RELEASE</version>
     </parent>
 
     <!-- 项目坐标 -->
-    <groupId>org.hzero</groupId>
     <artifactId>hzero-todo-service</artifactId>
-
-    <!-- 属性 -->
-    <properties>
-        <mysql.version>8.0.28</mysql.version>
-    </properties>
 
     <!-- 项目业务依赖管理 -->
     <dependencies>
@@ -41,7 +35,6 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>${mysql.version}</version>
         </dependency>
         <!-- undertow服务器替代tomcat -->
         <dependency>
@@ -72,6 +65,11 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+        <!-- Lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
         </dependency>
     </dependencies>
 
