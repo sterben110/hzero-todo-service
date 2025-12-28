@@ -14,7 +14,7 @@ import io.choerodon.swagger.annotation.Permission;
 @SpringBootApplication
 @RestController
 // @EnableChoerodonResourceServer 用于开启资源认证、关闭 Security 安全认证
-@EnableChoerodonResourceServer
+// @EnableChoerodonResourceServer
 public class TodoApplication {
     public static void main(String[] args) {
         SpringApplication.run(TodoApplication.class, args);

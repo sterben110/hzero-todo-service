@@ -37,14 +37,14 @@ public class UserController extends BaseController {
         this.userRepository = userRepository;
     }
 
-    @Permission(level = ResourceLevel.SITE)
+    // @Permission(level = ResourceLevel.SITE)
     @ApiOperation(value = "分页查询用户")
     @GetMapping
     public ResponseEntity<Page<User>> list(User user, PageRequest pageRequest) {
         return Results.success(userRepository.pageAndSort(pageRequest, user));
     }
 
-    @Permission(level = ResourceLevel.SITE)
+    // @Permission(level = ResourceLevel.SITE)
     @ApiOperation(value = "创建 todo 用户")
     @PostMapping
     public ResponseEntity<User> create(@RequestBody User user) {
@@ -54,7 +54,7 @@ public class UserController extends BaseController {
         return Results.success(userService.create(user));
     }
 
-    @Permission(level = ResourceLevel.SITE)
+    // @Permission(level = ResourceLevel.SITE)
     @ApiOperation(value = "删除 todo 用户")
     @DeleteMapping
     public ResponseEntity<User> delete(@RequestBody User user) {

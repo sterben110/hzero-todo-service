@@ -1,5 +1,9 @@
 #-----Spring配置
 spring:
+  security:
+    user:
+      name: admin
+      password: 123456
   # MySQL数据库配置
   datasource:
     url: ${SPRING_DATASOURCE_URL:${mysql.url}}
@@ -41,11 +45,17 @@ spring:
         compressed: true
 
 #-----远程调用、服务熔断及负载均衡配置
-# 远程调用配置-Feign
+# 远程调用组件-Feign
 feign:
+  client:
+    config:
+      default:
+        connectTimeout: ${FEIGN_CLIENT_CONNECT_TIMEOUT:5000} # 连接超时时间
+        readTimeout: ${FEIGN_CLIENT_READ_TIMEOUT:30000} # 读取超时时间
+        loggerLevel: ${FEIGN_CLIENT_LOGGER_LEVEL:basic} # 日志级别（none,basic,full）
   hystrix:
-    enabled: true # 启用Feign的Hystrix支持，实现熔断降级
-# 服务熔断配置-Hystrix
+    enabled: true # 启用Feign的Hystrix熔断功能
+# 熔断组件-Hystrix
 hystrix:
   # 线程池配置（控制熔断的并发线程资源）
   threadpool:

@@ -22,7 +22,6 @@ import org.springframework.stereotype.Component;
 @VersionAudit // 在类上使用，启用objectVersionNumber自维护支持，插入一条数据objectVersionNumber默认为1，每次update后objectVersionNumber自增1
 @Table(name = "todo_user") // 表映射
 @JsonInclude(JsonInclude.Include.NON_NULL) // 数据返回前端时，排除为空的字段
-@Component
 @Data
 public class User extends AuditDomain { // AuditDomain包含5个自维护字段，使用@ModifyAudit和@VersionAudit的实体类要继承该类
     @Id // 主键主键，注意是 javax.persistence.Id

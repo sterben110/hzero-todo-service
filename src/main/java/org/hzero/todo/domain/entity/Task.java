@@ -26,7 +26,6 @@ import io.choerodon.mybatis.domain.AuditDomain;
 @VersionAudit
 @Table(name = "todo_task")
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Component
 @Data
 public class Task extends AuditDomain {
     public static final String FIELD_ID = "id";

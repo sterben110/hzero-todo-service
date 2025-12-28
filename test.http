@@ -1,0 +1,8 @@
+
+@baseUrl = http://localhost:8088
+# Spring Security默认用户密码 admin:123456 的Base64编码
+@basicauth = YWRtaW46MTIzNDU2
+
+### 查询用户列表
+GET {{baseUrl}}/v1/users?id=1
+Authorization: Basic {{basicauth}}
