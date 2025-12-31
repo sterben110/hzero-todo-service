@@ -45,7 +45,7 @@ public class TaskController extends BaseController {
     /**
      * 注意分页参数是 io.choerodon.mybatis.pagehelper.domain.PageRequest;
      */
-    // @Permission(level = ResourceLevel.ORGANIZATION)
+    @Permission(level = ResourceLevel.ORGANIZATION)
     @ApiOperation(value = "根据taskNumber分页查询task")
     @GetMapping
     public ResponseEntity<Page<Task>> list(@PathVariable("organizationId") Long tenantId, Task task,
@@ -54,7 +54,7 @@ public class TaskController extends BaseController {
         return Results.success(taskRepository.pageTask(task, pageRequest));
     }
 
-    // @Permission(level = ResourceLevel.ORGANIZATION)
+    @Permission(level = ResourceLevel.ORGANIZATION)
     @ApiOperation(value = "创建task")
     @PostMapping
     public ResponseEntity<Task> create(@PathVariable("organizationId") Long tenantId, @RequestBody Task task) {
@@ -64,7 +64,7 @@ public class TaskController extends BaseController {
         return Results.success(taskService.create(task));
     }
 
-    // @Permission(level = ResourceLevel.ORGANIZATION)
+    @Permission(level = ResourceLevel.ORGANIZATION)
     @ApiOperation(value = "更新task")
     @PutMapping
     public ResponseEntity<Task> update(@PathVariable("organizationId") Long tenantId, @RequestBody Task task) {
@@ -75,7 +75,7 @@ public class TaskController extends BaseController {
         return Results.success(taskService.update(task));
     }
 
-    // @Permission(level = ResourceLevel.ORGANIZATION)
+    @Permission(level = ResourceLevel.ORGANIZATION)
     @ApiOperation(value = "根据taskNumber查询task")
     @ApiImplicitParams({
             @ApiImplicitParam(value = "任务编号", paramType = "string")
@@ -85,7 +85,7 @@ public class TaskController extends BaseController {
         return Results.success(taskRepository.selectDetailByTaskNumber(taskNumber));
     }
 
-    // @Permission(level = ResourceLevel.ORGANIZATION)
+    @Permission(level = ResourceLevel.ORGANIZATION)
     @ApiOperation(value = "根据taskNumber删除task")
     @DeleteMapping("/{taskNumber}")
     public void delete(@PathVariable Long organizationId, @PathVariable @ApiParam(value = "任务编号") String taskNumber) {

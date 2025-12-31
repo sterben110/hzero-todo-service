@@ -2,8 +2,8 @@
 spring:
   security:
     user:
-      name: admin
-      password: 123456
+      name: {{spring.security.user.name}}
+      password: {{spring.security.user.password}}
   # MySQL数据库配置
   datasource:
     url: ${SPRING_DATASOURCE_URL:${mysql.url}}

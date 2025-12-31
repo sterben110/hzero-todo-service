@@ -63,8 +63,6 @@ eureka:
     leaseRenewalIntervalInSeconds: ${EUREKA_INSTANCE_LEASE_RENEWAL_INTERVAL_IN_SECONDS:30}
     # 实例故障摘除时间，默认90秒，实际是90*2=180秒，配置45就是90秒
     leaseExpirationDurationInSeconds: ${EUREKA_INSTANCE_LEASE_EXPIRATION_DURATION_IN_SECONDS:45}
-    # 强制指定IP地址
-    # ip-address: 10.221.0.125
     # 服务的一些元数据信息
     metadata-map:
       VERSION: 1.0.0-snapshot

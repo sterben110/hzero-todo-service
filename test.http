@@ -4,5 +4,5 @@
 @basicauth = YWRtaW46MTIzNDU2
 
 ### 查询用户列表
-GET {{baseUrl}}/v1/users?id=1
-Authorization: Basic {{basicauth}}
+GET {{baseUrl}}/v1/users?employeeName=bchen3
+Authorization: Basic {{basicauth}}  
